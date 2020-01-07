@@ -1,0 +1,20 @@
+
+.btn {
+  color: #aaa;
+  border:1px solid #ccc;
+  display:inline-block;
+  width:25%;
+  font-size:1.15em;
+  height:2.5em;
+  line-height:2.5em;
+  text-align:center;
+}
+
+.btn:nth-of-type(1){color:#108ee9;border-color:#108ee9;}
+
+.tag{
+  margin: 0.3em 0 0.3em 1em;
+  font-size:1.16em;
+}
+
+.link{width:100%;position:absolute!important;bottom:0;}

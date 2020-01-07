@@ -1,0 +1,12 @@
+
+.top{display:flex;padding:1em;}
+
+.top img{width: 11em;height: 15.6em;}
+.list{list-style:none;padding-left:1.5em;flex:1;margin:0;}
+.list li:nth-of-type(1){font-size:1.4em;font-weight: bold;}
+.list li{margin-bottom:0.5em;}
+.list a:nth-of-type(1){color:red;height:2.2em;line-height: 2.2em;font-size:1.2em;}
+.list a:nth-of-type(1)::before{border-color:red;}
+
+.panel{border-bottom: 1px #eee solid;margin-bottom:1em;}
+.panel div div{font-size:1.2em!important;text-indent: 2em;}
