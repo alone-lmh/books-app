@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 //引入pc版antd样式
-import { Button, Icon } from "antd";
+import {Button, Icon } from "antd";
+import { Toast} from "antd-mobile"
 import router from "umi/router";
 //引入手机版的antd样式
 // import { Button,Icon } from "antd-mobile";
@@ -23,6 +24,7 @@ export default connect(state => state.book)(function index(props) {
     limit
   } = props;
   useEffect(() => {
+    Toast.hide();
     document.getElementById("root").style.height = 100 + "%";
     if (list.length == 0) {
       dispatch({
@@ -80,6 +82,7 @@ export default connect(state => state.book)(function index(props) {
           type="primary"
           onClick={() => {
             if (page > 0) {
+              Toast.loading("Loading...",15);
               if (!flag) {
                 dispatch({
                   type: "book/loadData",
@@ -115,6 +118,7 @@ export default connect(state => state.book)(function index(props) {
           onClick={() => {
             /*当点击按钮的时候通过dispatch派发一个action，这个action的参数名字是"book/save":book表示命名空间，save表示我们reducers中写好的方法*/
             if (pages > page + 1) {
+              Toast.loading("Loading...",15);
               if (!flag) {
                 dispatch({
                   type: "book/loadData",

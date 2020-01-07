@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "dva";
-import { Button } from "antd-mobile";
+import { Toast, Button } from "antd-mobile";
 import router from "umi/router";
 import indexCss from "../css/index.css";
 function chapters(props) {
   const { chapter, dispatch } = props;
+  useEffect(()=>{Toast.hide();},[]);
   return (
     <div className={indexCss.box}>
       <div className={indexCss.top}>
@@ -24,6 +25,7 @@ function chapters(props) {
               key={i}
               onClick={() => {
                 if (v.link) {
+                  Toast.loading("Loading...",15);
                   dispatch({
                     type: "book/read",
                     payload: { url: v.link, num: i }

@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "dva";
 import router from "umi/router";
-import { Accordion, List, Button } from "antd-mobile";
+import {Toast,  Accordion, List, Button } from "antd-mobile";
 import detailsCss from "../css/details.css";
 
 function bookDetails(props) {
   const Item = List.Item;
   const { book, dispatch, id } = props;
+  useEffect(()=>{Toast.hide();},[]);
   function getChapters() {
+    Toast.loading("Loading...",15);
     dispatch({
       type: "book/loadChapter",
       payload: { id: id }

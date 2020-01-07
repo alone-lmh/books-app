@@ -3,18 +3,18 @@ import { connect } from "dva";
 import router from "umi/router";
 import indexCss from "../css/index.css";
 import delImg from "../img/del.jpg";
-import { Button, Modal } from "antd-mobile";
+import {Toast, Button, Modal } from "antd-mobile";
 
 function bookrack(props) {
   const { dispatch } = props;
   const alert = Modal.alert;
   const books = JSON.parse(localStorage.getItem("books"));
   useEffect(() => {
+    Toast.hide();
     document.getElementById("root").style.height = "100%";
   }, []);
   function showAlert(id) {
     var tag = event.target.parentNode;
-    console.log(tag);
     alert("删除", "确定从书架中移除此书???", [
       { text: "取消" },
       {

@@ -1,14 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "dva";
-import { Button } from "antd-mobile";
+import { Toast, Button } from "antd-mobile";
 import router from "umi/router";
 import indexCss from "../css/index.css";
 
 function readBook(props) {
   const { reading, num, chapter, dispatch, id } = props;
-  console.log(reading);
+  // console.log(reading);
   const arr = JSON.stringify(reading.body).slice(1,JSON.stringify(reading.body).length-1).split("\\n").map(v=>v.replace(/\\r/g,"").trim()).filter(v=>v!=="")
-  console.log(arr)
+  // console.log(arr)
+  useEffect(()=>{Toast.hide();},[]);
   return (
     <div>
       <Button
@@ -36,6 +37,7 @@ function readBook(props) {
         type="ghost"
         onClick={() => {
           if (num > 0) {
+            Toast.loading("Loading...",15);
             dispatch({
               type: "book/read",
               payload: { url: chapter[num - 1].link, num: num - 1 }
@@ -52,6 +54,7 @@ function readBook(props) {
         type="ghost"
         onClick={() => {
           if (num < chapter.length) {
+            Toast.loading("Loading...",15);
             dispatch({
               type: "book/read",
               payload: { url: chapter[num + 1].link, num: num + 1 }

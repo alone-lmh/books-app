@@ -24,6 +24,11 @@ export function readBook(url) {
   return request("http://chapter.xmxingheju.com/chapter/" + url);
 }
 
+//获取搜索提示
+export function getTipWord(word) {
+  return request("http://lunbo.wgfgr.cn/search/suggest?key="+word);
+}
+
 //获取热门小说标题
 export function getHotWord() {
   return request("http://lunbo.wgfgr.cn/node/info?nodeAlias=hot-word");

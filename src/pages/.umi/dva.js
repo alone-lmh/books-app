@@ -10,11 +10,11 @@ export function _onCreate() {
   const runtimeDva = plugins.mergeConfig('dva');
   app = dva({
     history,
-
+    
     ...(runtimeDva.config || {}),
     ...(window.g_useSSR ? { initialState: window.g_initialData } : {}),
   });
-
+  
   app.use(createLoading());
   (runtimeDva.plugins || []).forEach(plugin => {
     app.use(plugin);

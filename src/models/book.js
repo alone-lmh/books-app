@@ -2,20 +2,22 @@ import {
   list,
   bookDetails,
   readBook,
+  getTipWord,
   getHotWord,
   search
 } from "../servers/bookAPI";
-import classify from "../../public/data/classify.json"
+import classify from "../../public/data/classify.json";
 import { routerRedux } from "dva";
 
 export default {
   namespace: "book",
-  /* state表示数据，namespace表示组件名 pages表示总的小说个数  page表示当前在第几页，num表示当前在第几章,hotWord热搜词,flag用于判断是搜索还是分类*/
+  /* state表示数据，namespace表示组件名 pages表示总的小说个数  page表示当前在第几页，num表示当前在第几章,hotWord热搜词,tipWord搜索提示,flag用于判断是搜索还是分类*/
   state: {
     gender: "male",
     type: "1",
     major: "玄幻",
     hotWord: [],
+    tipWord: [],
     classify: classify,
     list: [],
     page: 0,
@@ -26,7 +28,7 @@ export default {
     id: "",
     flag: false,
     num: 1,
-    book:''
+    book: ""
   },
   /* reducers表示我们如何，或者是以何种方式来改变数据 */
   /* reducers中接收的是同步的方法 */
@@ -65,10 +67,10 @@ export default {
           type: action.payload.type,
           major: action.payload.major,
           flag: action.payload.flag,
-          limit:action.payload.limit
+          limit: action.payload.limit
         }
       });
-      if(location.hash !== "#/"){
+      if (location.hash !== "#/") {
         yield put(routerRedux.push({ pathname: "/" }));
       }
       if (document.getElementById("books")) {
@@ -79,7 +81,7 @@ export default {
     *loadDetails(action, { put, call }) {
       yield put({
         type: "add",
-        payload: { id: action.payload.id ,book:action.payload.book}
+        payload: { id: action.payload.id, book: action.payload.book }
       });
       yield put(routerRedux.push({ pathname: "/bookDetails" }));
     },
@@ -89,7 +91,7 @@ export default {
       // console.log(result);
       yield put({
         type: "add",
-        payload: { chapter: result.chapters}
+        payload: { chapter: result.chapters }
       });
       yield put(routerRedux.push({ pathname: "/chapters" }));
     },
@@ -106,7 +108,13 @@ export default {
         if (location.hash !== "#/readBook") {
           yield put(routerRedux.push({ pathname: "/readBook" }));
         }
+        yield Toast.hide();
       }
+    },
+    //获取搜索提示
+    *tipWord(action, { put, call }) {
+      const result = yield call(getTipWord, action.payload.word);
+      yield put({ type: "add", payload: { tipWord: result.keywords } });
     },
     //获取热搜词
     *hotWord(action, { put, call }) {
@@ -131,7 +139,7 @@ export default {
           major: action.payload.major,
           flag: action.payload.flag,
           page: action.payload.page,
-          limit:action.payload.limit
+          limit: action.payload.limit
         }
       });
       if (location.hash !== "#/") {

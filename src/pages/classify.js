@@ -1,12 +1,13 @@
 import React, { useEffect } from "react";
 import { connect } from "dva";
-import { Tabs, Tag ,Button} from "antd-mobile";
+import { Toast, Tabs, Tag ,Button} from "antd-mobile";
 import router from "umi/router";
 import classifyCss from "../css/classify.css";
 
 function classify(props) {
   const tabs = [{ title: "男生" }, { title: "女生" }, { title: "出版" }];
   var { classify, dispatch, type, limit } = props;
+  useEffect(()=>{Toast.hide();},[]);
   function check(t) {
     type = t;
     let allB = document.getElementsByTagName("b");
@@ -19,6 +20,7 @@ function classify(props) {
     dispatch({ type: "book/add", payload: { type: t } });
   }
   function find(gender, type, major) {
+    Toast.loading("Loading...",15);
     // console.log(1)
     dispatch({
       type: "book/loadData",
