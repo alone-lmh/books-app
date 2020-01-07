@@ -21,7 +21,7 @@ export function bookDetails(id) {
 
 //获取小说章节详情
 export function readBook(url) {
-  return request("http://chapter.xmxingheju.com/chapter/" + url);
+  return request("http://lunbo.wgfgr.cn/chapter/" + encodeURIComponent(url));
 }
 
 //获取搜索提示

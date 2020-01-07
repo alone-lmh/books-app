@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 //引入pc版antd样式
-import {Button, Icon } from "antd";
-import { Toast} from "antd-mobile"
+import { Button, Icon } from "antd";
+import { Toast } from "antd-mobile";
 import router from "umi/router";
 //引入手机版的antd样式
 // import { Button,Icon } from "antd-mobile";
@@ -40,8 +40,8 @@ export default connect(state => state.book)(function index(props) {
           type="search"
           className={indexCss.search}
           onClick={() => {
-            dispatch({ type: "book/add", payload: { flag: true } });
-            router.push("/search");
+            Toast.loading("Loading...", 15);
+            dispatch({ type: "book/hotWord", payload: { flag: true } });
           }}
         ></Icon>
         {major}
@@ -59,16 +59,17 @@ export default connect(state => state.book)(function index(props) {
           {list.map(v => {
             return (
               <li key={v._id}>
-              <div>
-                <img
-                  src={v.cover}
-                  onClick={() => {
-                    dispatch({
-                      type: "book/loadDetails",
-                      payload: { id: v._id, book: v }
-                    });
-                  }}
-                /></div>
+                <div>
+                  <img
+                    src={v.cover}
+                    onClick={() => {
+                      dispatch({
+                        type: "book/loadDetails",
+                        payload: { id: v._id, book: v }
+                      });
+                    }}
+                  />
+                </div>
                 <p>{v.title}</p>
               </li>
             );
@@ -82,7 +83,7 @@ export default connect(state => state.book)(function index(props) {
           type="primary"
           onClick={() => {
             if (page > 0) {
-              Toast.loading("Loading...",15);
+              Toast.loading("Loading...", 15);
               if (!flag) {
                 dispatch({
                   type: "book/loadData",
@@ -118,7 +119,7 @@ export default connect(state => state.book)(function index(props) {
           onClick={() => {
             /*当点击按钮的时候通过dispatch派发一个action，这个action的参数名字是"book/save":book表示命名空间，save表示我们reducers中写好的方法*/
             if (pages > page + 1) {
-              Toast.loading("Loading...",15);
+              Toast.loading("Loading...", 15);
               if (!flag) {
                 dispatch({
                   type: "book/loadData",

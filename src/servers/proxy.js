@@ -12,8 +12,8 @@ app.use(cors())
 //请求的时候传递一个参数url
 app.post('/api/proxy',(req,res)=>{
     const {url}=req.body;
-  console.log(url)
-    axios.get(encodeURI(url)).then(response=>{
+    console.log(url)
+    axios.get(encodeURIComponent(url)).then(response=>{
         res.json(response.data)
     })
 })

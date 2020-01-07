@@ -6,6 +6,7 @@ import {
   getHotWord,
   search
 } from "../servers/bookAPI";
+import { Toast } from "antd-mobile";
 import classify from "../../public/data/classify.json";
 import { routerRedux } from "dva";
 
@@ -76,6 +77,7 @@ export default {
       if (document.getElementById("books")) {
         yield (document.getElementById("books").scrollTop = 0);
       }
+      yield Toast.hide();
     },
     //加载小说详情
     *loadDetails(action, { put, call }) {
@@ -94,6 +96,7 @@ export default {
         payload: { chapter: result.chapters }
       });
       yield put(routerRedux.push({ pathname: "/chapters" }));
+      yield Toast.hide();
     },
     //加载小说内容
     *read(action, { put, call }) {
@@ -105,6 +108,7 @@ export default {
           payload: { reading: result.chapter, num: action.payload.num }
         });
         yield (document.documentElement.scrollTop = 0);
+        yield (document.body.scrollTop = 0);
         if (location.hash !== "#/readBook") {
           yield put(routerRedux.push({ pathname: "/readBook" }));
         }
@@ -119,7 +123,8 @@ export default {
     //获取热搜词
     *hotWord(action, { put, call }) {
       const result = yield call(getHotWord);
-      yield put({ type: "add", payload: { hotWord: result.books } });
+      yield put({ type: "add", payload: { hotWord: result.books,flag:action.payload.flag } });
+      yield put(routerRedux.push({ pathname: "/search" }));
     },
     // 获取搜索结果
     *search(action, { put, call }) {
@@ -145,6 +150,7 @@ export default {
       if (location.hash !== "#/") {
         yield put(routerRedux.push({ pathname: "/" }));
       }
+      yield Toast.hide();
     }
   }
 };

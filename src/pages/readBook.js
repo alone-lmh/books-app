@@ -11,7 +11,7 @@ function readBook(props) {
   // console.log(arr)
   useEffect(()=>{Toast.hide();},[]);
   return (
-    <div>
+    <div id="read">
       <Button
         type="primary"
         onClick={() => {

@@ -9,7 +9,6 @@ function search(props) {
   const { dispatch, hotWord, limit, tipWord } = props;
   useEffect(() => {
     Toast.hide();
-    dispatch({ type: "book/hotWord" });
     dispatch({ type: "book/add", payload: { tipWord: [] } });
   }, []);
   function search(word) {
