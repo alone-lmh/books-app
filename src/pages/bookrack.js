@@ -8,7 +8,7 @@ import {Toast, Button, Modal } from "antd-mobile";
 function bookrack(props) {
   const { dispatch } = props;
   const alert = Modal.alert;
-  const books = JSON.parse(localStorage.getItem("books"));
+  var books = JSON.parse(localStorage.getItem("books"))||[];
   useEffect(() => {
     Toast.hide();
     document.getElementById("root").style.height = "100%";
@@ -20,11 +20,12 @@ function bookrack(props) {
       {
         text: "确定",
         onPress: () => {
-          tag.remove();
           let arr = books.filter(v => {
             return v._id != id;
           });
+          books=arr;
           localStorage.setItem("books", JSON.stringify(arr));
+          tag.remove();
         }
       }
     ]);
