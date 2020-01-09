@@ -3,29 +3,30 @@ import { connect } from "dva";
 import router from "umi/router";
 import indexCss from "../css/index.css";
 import delImg from "../img/del.jpg";
-import {Toast, Button, Modal } from "antd-mobile";
+import { Toast, Button, Modal } from "antd-mobile";
 
 function bookrack(props) {
   const { dispatch } = props;
   const alert = Modal.alert;
-  var books = JSON.parse(localStorage.getItem("books"))||[];
+  var books = JSON.parse(localStorage.getItem("books")) || [];
   useEffect(() => {
     Toast.hide();
     document.getElementById("root").style.height = "100%";
   }, []);
   function showAlert(id) {
-    var tag = event.target.parentNode;
+    // var tag = event.target.parentNode;
     alert("删除", "确定从书架中移除此书???", [
-      { text: "取消" },
+      { text: "取消",onPress:()=>{} },
       {
         text: "确定",
         onPress: () => {
           let arr = books.filter(v => {
             return v._id != id;
           });
-          books=arr;
+          books = arr;
           localStorage.setItem("books", JSON.stringify(arr));
-          tag.remove();
+          // tag.remove();
+          router.go(0)
         }
       }
     ]);
@@ -46,7 +47,6 @@ function bookrack(props) {
           return (
             <li key={v._id}>
               <div>
-                {" "}
                 <img
                   src={v.cover}
                   onClick={() => {

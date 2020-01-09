@@ -5,7 +5,7 @@ import router from "umi/router";
 import indexCss from "../css/index.css";
 
 function readBook(props) {
-  const { reading, num, chapter, dispatch, id } = props;
+  const { reading, num, chapter, dispatch } = props;
   // console.log(reading);
   const arr = JSON.stringify(reading.body).slice(1,JSON.stringify(reading.body).length-1).split("\\n").map(v=>v.replace(/\\r/g,"").trim()).filter(v=>v!=="")
   // console.log(arr)

@@ -1,5 +1,15 @@
 import { request } from "../utils/request";
 
+//登录
+export function login(userName,password){
+  return request("http://121.41.30.226:3009/api/v1/auth/login",{userName,password})
+}
+
+//注册
+export function reg(userName,password){
+  return request("http://121.41.30.226:3009/api/v1/auth/reg",{userName,password})
+}
+
 //获取小说列表
 export function list(page = 0, gender, type, major,limit) {
   return request(

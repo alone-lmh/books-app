@@ -6,6 +6,7 @@ import classifyCss from "../css/classify.css";
 
 function classify(props) {
   const tabs = [{ title: "男生" }, { title: "女生" }, { title: "出版" }];
+  const isLogined = localStorage.getItem("token") ? true : false;
   var { classify, dispatch, type, limit } = props;
   useEffect(()=>{Toast.hide();},[]);
   function check(t) {
@@ -118,7 +119,11 @@ function classify(props) {
       <Button className={classifyCss.link}
         type="ghost"
         onClick={() => {
-          router.push("/bookrack");
+          if(isLogined){
+            router.push("/bookrack");
+          }else{
+            router.push("/login?from=classify");
+          }
         }}
       >
         进入我的书架

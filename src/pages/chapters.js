@@ -5,7 +5,10 @@ import router from "umi/router";
 import indexCss from "../css/index.css";
 function chapters(props) {
   const { chapter, dispatch } = props;
-  useEffect(()=>{Toast.hide();},[]);
+  const isLogined = localStorage.getItem("token") ? true : false;
+  useEffect(() => {
+    Toast.hide();
+  }, []);
   return (
     <div className={indexCss.box}>
       <div className={indexCss.top}>
@@ -24,12 +27,16 @@ function chapters(props) {
             <li
               key={i}
               onClick={() => {
-                if (v.link) {
-                  Toast.loading("Loading...",15);
-                  dispatch({
-                    type: "book/read",
-                    payload: { url: v.link, num: i }
-                  });
+                if (isLogined) {
+                  if (v.link) {
+                    Toast.loading("Loading...", 15);
+                    dispatch({
+                      type: "book/read",
+                      payload: { url: v.link, num: i }
+                    });
+                  }
+                } else {
+                  router.push("/login?from=chapters");
                 }
               }}
             >

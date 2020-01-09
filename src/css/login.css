@@ -1,0 +1,10 @@
+.login{text-align:center;background-size: contain;height:100%;background-image: url("../img/bg.png");}
+
+.img{width: 10em;margin:5em 0;}
+
+.ipt{border-bottom:1px #fefefe solid;}
+
+.link{padding:1em 1em 0 0;text-align: right;color:rgba(89, 1, 253, 1);}
+
+.btn{margin-top:3.5em;background:linear-gradient(to right, #4bb0ff, #6149f6);color:#fff!important;}
+

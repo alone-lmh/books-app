@@ -6,6 +6,7 @@ import detailsCss from "../css/details.css";
 
 function bookDetails(props) {
   const Item = List.Item;
+  const isLogined = localStorage.getItem("token") ? true : false;
   const { book, dispatch, id } = props;
   useEffect(()=>{Toast.hide();},[]);
   function getChapters() {
@@ -55,7 +56,11 @@ function bookDetails(props) {
             <Button
               type="ghost"
               onClick={() => {
-                addBook();
+                if(isLogined){
+                  addBook();
+                }else{
+                  router.push("/login?from=bookDetails");
+                }
               }}
             >
               添加至书架

@@ -18,7 +18,7 @@
 
 
 .bookrack{background:url("../img/bookrack.jpg");    height: 100%;background-size: 120%;background-position-x: center;display:flex;flex-direction: column;}
-.bookrack li{width:6.9em;height: max-content;padding-top:2em;position: relative;}
+.bookrack li{width:6.9em;height: max-content;padding-top:2em;position: relative;margin:0 0.5em;}
 .bookrack li div{width: 6.9em;height: 9.2em;}
 .bookrack li img{width:100%;height:100%;}
 .bookrack li p{color: #fff;font-weight: bold;margin: 0;height: 2em;line-height: 2em;white-space: nowrap;overflow: hidden;width: 100%;text-overflow: ellipsis;}

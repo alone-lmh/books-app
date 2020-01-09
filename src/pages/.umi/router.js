@@ -39,9 +39,19 @@ const routes = [
     component: require('../index.js').default,
   },
   {
+    path: '/login',
+    exact: true,
+    component: require('../login.js').default,
+  },
+  {
     path: '/readBook',
     exact: true,
     component: require('../readBook.js').default,
+  },
+  {
+    path: '/reg',
+    exact: true,
+    component: require('../reg.js').default,
   },
   {
     path: '/search',

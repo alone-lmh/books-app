@@ -4,7 +4,9 @@ import {
   readBook,
   getTipWord,
   getHotWord,
-  search
+  search,
+  login,
+  reg
 } from "../servers/bookAPI";
 import { Toast } from "antd-mobile";
 import classify from "../../public/data/classify.json";
@@ -43,6 +45,34 @@ export default {
   },
   /* 在dva中所有的异步操作都要放在effects中 */
   effects: {
+    //登录
+    *login(action, { put, call }) {
+      const result = yield call(
+        login,
+        action.payload.userName,
+        action.payload.psw
+      );
+      if (result.code == "success") {
+        yield localStorage.setItem("token", JSON.stringify(result.token));
+        yield put(routerRedux.push({ pathname: "/"+action.payload.from }));
+      } else {
+        yield Toast.info(result.message, 1);
+      }
+    },
+    //注册
+    *reg(action, { put, call }) {
+      const result = yield call(
+        reg,
+        action.payload.userName,
+        action.payload.psw
+      );
+      if (result.code == "success") {
+        yield Toast.info("注册成功,前去登录", 1);
+        yield put(routerRedux.push({ pathname: "/login?from="+action.payload.from }));
+      } else {
+        yield Toast.info(result.message, 1);
+      }
+    },
     //加载小说列表
     *loadData(action, { put, call }) {
       //异步操作接收两个数据，第一个参数是我们传过来的数据，第二个参数里面有两个方法是我们会使用到的put 和 call
@@ -123,7 +153,10 @@ export default {
     //获取热搜词
     *hotWord(action, { put, call }) {
       const result = yield call(getHotWord);
-      yield put({ type: "add", payload: { hotWord: result.books,flag:action.payload.flag } });
+      yield put({
+        type: "add",
+        payload: { hotWord: result.books, flag: action.payload.flag }
+      });
       yield put(routerRedux.push({ pathname: "/search" }));
     },
     // 获取搜索结果
