@@ -40,7 +40,7 @@ export default connect(state => state.book)(function index(props) {
           type="search"
           className={indexCss.search}
           onClick={() => {
-            Toast.loading("Loading...", 15);
+            Toast.loading("Loading...", 30);
             dispatch({ type: "book/hotWord", payload: { flag: true } });
           }}
         ></Icon>
@@ -83,7 +83,7 @@ export default connect(state => state.book)(function index(props) {
           type="primary"
           onClick={() => {
             if (page > 0) {
-              Toast.loading("Loading...", 15);
+              Toast.loading("Loading...", 30);
               if (!flag) {
                 dispatch({
                   type: "book/loadData",
@@ -119,7 +119,7 @@ export default connect(state => state.book)(function index(props) {
           onClick={() => {
             /*当点击按钮的时候通过dispatch派发一个action，这个action的参数名字是"book/save":book表示命名空间，save表示我们reducers中写好的方法*/
             if (pages > page + 1) {
-              Toast.loading("Loading...", 15);
+              Toast.loading("Loading...", 30);
               if (!flag) {
                 dispatch({
                   type: "book/loadData",

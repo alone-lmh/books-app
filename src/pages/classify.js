@@ -6,7 +6,7 @@ import classifyCss from "../css/classify.css";
 
 function classify(props) {
   const tabs = [{ title: "男生" }, { title: "女生" }, { title: "出版" }];
-  const isLogined = localStorage.getItem("token") ? true : false;
+  const isLogined = localStorage.getItem("bookToken") ? true : false;
   var { classify, dispatch, type, limit } = props;
   useEffect(()=>{Toast.hide();},[]);
   function check(t) {
@@ -21,7 +21,7 @@ function classify(props) {
     dispatch({ type: "book/add", payload: { type: t } });
   }
   function find(gender, type, major) {
-    Toast.loading("Loading...",15);
+    Toast.loading("Loading...",30);
     // console.log(1)
     dispatch({
       type: "book/loadData",

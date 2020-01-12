@@ -6,11 +6,11 @@ import detailsCss from "../css/details.css";
 
 function bookDetails(props) {
   const Item = List.Item;
-  const isLogined = localStorage.getItem("token") ? true : false;
+  const isLogined = localStorage.getItem("bookToken") ? true : false;
   const { book, dispatch, id } = props;
   useEffect(()=>{Toast.hide();},[]);
   function getChapters() {
-    Toast.loading("Loading...",15);
+    Toast.loading("Loading...",30);
     dispatch({
       type: "book/loadChapter",
       payload: { id: id }

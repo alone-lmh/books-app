@@ -53,7 +53,7 @@ export default {
         action.payload.psw
       );
       if (result.code == "success") {
-        yield localStorage.setItem("token", JSON.stringify(result.token));
+        yield localStorage.setItem("bookToken", JSON.stringify(result.token));
         yield put(routerRedux.push({ pathname: "/"+action.payload.from }));
       } else {
         yield Toast.info(result.message, 1);

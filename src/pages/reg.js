@@ -27,7 +27,7 @@ function reg(props) {
   }
   return (
     <div className={loginCss.login}>
-      <NavBar
+      <NavBar className={loginCss.head}
         mode="light"
         icon={<Icon type="left" />}
         onLeftClick={() => router.push('/login?from='+props.history.location.query.from)}
@@ -44,9 +44,9 @@ function reg(props) {
       >
         <div>用户名</div>
       </InputItem>
-      <InputItem
+      <InputItem className={loginCss.ipt}
         type="password"
-        placeholder="****"
+        placeholder="******"
         onChange={v => {
           psw = v;
         }}

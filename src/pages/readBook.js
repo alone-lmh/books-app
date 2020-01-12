@@ -37,7 +37,7 @@ function readBook(props) {
         type="ghost"
         onClick={() => {
           if (num > 0) {
-            Toast.loading("Loading...",15);
+            Toast.loading("Loading...",30);
             dispatch({
               type: "book/read",
               payload: { url: chapter[num - 1].link, num: num - 1 }
@@ -54,7 +54,7 @@ function readBook(props) {
         type="ghost"
         onClick={() => {
           if (num < chapter.length) {
-            Toast.loading("Loading...",15);
+            Toast.loading("Loading...",30);
             dispatch({
               type: "book/read",
               payload: { url: chapter[num + 1].link, num: num + 1 }

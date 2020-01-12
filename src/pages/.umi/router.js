@@ -14,6 +14,11 @@ const Router = routerRedux.ConnectedRouter;
 
 const routes = [
   {
+    path: '/404',
+    exact: true,
+    component: require('../404.js').default,
+  },
+  {
     path: '/bookDetails',
     exact: true,
     component: require('../bookDetails.js').default,

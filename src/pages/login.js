@@ -21,7 +21,7 @@ function login(props) {
   }
   return (
     <div className={loginCss.login}>
-      <NavBar
+      <NavBar className={loginCss.head}
         mode="light"
         icon={<Icon type="left" />}
         onLeftClick={() => router.push('/'+props.history.location.query.from)}
@@ -34,7 +34,7 @@ function login(props) {
       >
         <div>用户名</div>
       </InputItem>
-      <InputItem
+      <InputItem className={loginCss.ipt}
         type="password"
         placeholder="******" onChange={(v)=>{psw=v}}
       >

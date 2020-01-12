@@ -5,7 +5,7 @@ import router from "umi/router";
 import indexCss from "../css/index.css";
 function chapters(props) {
   const { chapter, dispatch } = props;
-  const isLogined = localStorage.getItem("token") ? true : false;
+  const isLogined = localStorage.getItem("bookToken") ? true : false;
   useEffect(() => {
     Toast.hide();
   }, []);
@@ -29,7 +29,7 @@ function chapters(props) {
               onClick={() => {
                 if (isLogined) {
                   if (v.link) {
-                    Toast.loading("Loading...", 15);
+                    Toast.loading("Loading...", 30);
                     dispatch({
                       type: "book/read",
                       payload: { url: v.link, num: i }

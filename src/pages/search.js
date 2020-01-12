@@ -12,7 +12,7 @@ function search(props) {
     dispatch({ type: "book/add", payload: { tipWord: [] } });
   }, []);
   function search(word) {
-    Toast.loading("Loading...",15);
+    Toast.loading("Loading...",30);
     dispatch({
       type: "book/search",
       payload: { word, page: 0, major: word, flag: true, limit }
