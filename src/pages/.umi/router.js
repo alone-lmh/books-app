@@ -14,11 +14,6 @@ const Router = routerRedux.ConnectedRouter;
 
 const routes = [
   {
-    path: '/404',
-    exact: true,
-    component: require('../404.js').default,
-  },
-  {
     path: '/bookDetails',
     exact: true,
     component: require('../bookDetails.js').default,
@@ -64,12 +59,8 @@ const routes = [
     component: require('../search.js').default,
   },
   {
-    component: () =>
-      React.createElement(
-        require('G:/yingyong/nvm/v12.9.0/node_modules/umi/node_modules/umi-build-dev/lib/plugins/404/NotFound.js')
-          .default,
-        { pagesPath: 'src/pages', hasRoutesInConfig: false },
-      ),
+    path: '*',
+    component: require('../404.js').default,
   },
 ];
 window.g_routes = routes;
